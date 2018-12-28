@@ -9,11 +9,14 @@
 <body>
 	<h1>회원관리</h1>
 	<p>회원가입</p>
-	<form action="">
-		ID<input type="text" name="id" /><br /> 이름<input type="text"
-			name="name" /><br /> 비밀번호<input type="text" name="pass" /><br />
-		주민번호<input type="text" name="ssn" /><br /> <input type="submit"
-			id="btn" value="JOIN" />
+	<form action="join-result.jsp">
+		ID<input type="text" name="id" /><br /> 
+		이름<input type="text"name="name" /><br /> 
+		비밀번호<input type="text" name="pass" /><br />
+		키<input type="text" name="height" /><br />
+		몸무게<input type="text" name="weight" /><br />
+		주민번호<input type="text" name="ssn" /> <br />
+		<input type="submit"id="btn" value="JOIN" />
 	</form>
 </body>
 </html>

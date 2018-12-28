@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	 로그인 성공
+	<a href="../main.jsp">홈으로 이동</a>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <body>
 	<h1> 메뉴 </h1>
 	<a href="member/main.jsp">회원관리</a><br />
-	<a href="">계좌관리</a><br />
+	<a href="account/main.jsp">계좌관리</a><br />
 	<a href="">게시판</a><br />
 	<a href="">관리자</a><br />
 
