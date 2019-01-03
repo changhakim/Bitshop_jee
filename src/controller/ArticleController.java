@@ -24,10 +24,16 @@ public class ArticleController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("_____article로 들어옴....");
-		String action = request.getParameter("action");
-		switch((action == null)?"move":action) {
+		
+		String dir = request.getParameter("dir");
+		String cmd = request.getParameter("cmd");
+		String page = request.getParameter("page");
+		page = (page == null)?page="main":page;
+		int a = request.getServletPath().indexOf(".");
+		dir = request.getServletPath().substring(1,a);
+		switch((cmd == null)?"move":cmd) {
 		case "move" :
-			Command.move(request, response,"/article/main.jsp");
+			Command.move(request, response,dir+"/"+page);
 		}
 	}
 

@@ -23,10 +23,15 @@ public class AccountController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("=====account로 진입====");
-		String action = request.getParameter("action");
-		switch((action == null)? "move":action) {
+		String cmd = request.getParameter("cmd");
+		String dir = request.getParameter("dir");
+		String page = request.getParameter("page");
+		page = "main";
+		int a = request.getServletPath().indexOf(".");
+		dir = request.getServletPath().substring(1,a);
+		switch((cmd == null)? "move":cmd) {
 		case "move": 
-			Command.move(request, response,"/account/main");
+			Command.move(request, response,dir+"/"+page);
 			
 			break;
 		}

@@ -23,10 +23,17 @@ public class AdminController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("$$$$admin으로 들어옴$$$$");
-		String action = request.getParameter("action");
-		switch((action == null) ? "move":action) {
+		
+		String page = "main";
+		String cmd = request.getParameter("cmd");
+		String dir = request.getParameter("dir");
+		if(dir == null) {
+			dir = request.getServletPath().substring(1,request.getServletPath().indexOf("."));
+		}
+		
+		switch((cmd == null) ? "move":cmd) {
 		case "move" :
-			Command.move(request, response,"/admin/main.jsp");
+			Command.move(request, response,dir+"/"+page);
 			break;
 		}
 		
