@@ -7,7 +7,3 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/style.css" />
 </head>
-<body>
-<h1>게시판</h1><br/>
-</body>
-</html>

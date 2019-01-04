@@ -22,17 +22,25 @@ public class AccountController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("=====account로 진입====");
-		String cmd = request.getParameter("cmd");
 		String dir = request.getParameter("dir");
+		if(dir == null){
+			int a = request.getServletPath().indexOf(".");
+			dir = request.getServletPath().substring(1,a);
+		}
+		String cmd = request.getParameter("cmd");
+		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
-		page = "main";
-		int a = request.getServletPath().indexOf(".");
-		dir = request.getServletPath().substring(1,a);
-		switch((cmd == null)? "move":cmd) {
+		page = (page == null)?"main":page;
+		
+		switch(cmd) {
 		case "move": 
-			Command.move(request, response,dir+"/"+page);
-			
+			Command.move(request, response,dir,page);
+			break;
+		case "open-account":
+			System.out.println(dir+"-----dir-----");
+			System.out.println(page+"------page-----");
+			String money = request.getParameter("money");
+			Command.move(request, response, dir, page);
 			break;
 		}
 		

@@ -26,14 +26,17 @@ public class ArticleController extends HttpServlet {
 		System.out.println("_____article로 들어옴....");
 		
 		String dir = request.getParameter("dir");
+		if(dir == null){
+			int a = request.getServletPath().indexOf(".");
+			dir = request.getServletPath().substring(1,a);
+		}
 		String cmd = request.getParameter("cmd");
+		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
 		page = (page == null)?page="main":page;
-		int a = request.getServletPath().indexOf(".");
-		dir = request.getServletPath().substring(1,a);
-		switch((cmd == null)?"move":cmd) {
+		switch(cmd) {
 		case "move" :
-			Command.move(request, response,dir+"/"+page);
+			Command.move(request, response,dir,page);
 		}
 	}
 

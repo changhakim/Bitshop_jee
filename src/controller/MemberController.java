@@ -19,38 +19,34 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("멤버서블릿으로 들어옴");
-		String cmd = request.getParameter("cmd");
 		String dir = request.getParameter("dir");
+		if(dir == null){
+			int a = request.getServletPath().indexOf(".");
+			dir = request.getServletPath().substring(1,a);
+		}
+		String cmd = request.getParameter("cmd");
+		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
-		if(page==null) {
-			page = "main";
-		}
-		if(dir==null) {
-			
-			int idx = request.getServletPath().indexOf("."); 
-			dir = request.getRequestedSessionId().substring(1,idx); 
-		}
-		/*action = (action == null) ? "move":action;*/
-		switch((cmd == null) ? "move":cmd) {
+		page = (page == null)?"main":page;
+		
+		switch(cmd) {
 		case "login":
-			String id = request.getParameter("id");
-			String pass = request.getParameter("pass");
+			String id = request.getParameter("uid");
+			String pass = request.getParameter("upw");
 			System.out.println("아이디="+id+"비밀번호="+pass);
 			
-			
-			
-			
-			if(id.equals("test")&&pass.equals("test")) {
-				Command.move(request, response, dir+"/"+page);
-			}else {
-				Command.move(request, response,"index");
-				
+			if(!(id.equals("test")&&pass.equals("test"))) {
+				dir = "";
+				page = "index";
 			}
+				
+				Command.move(request, response,dir,page);
+				
+			
 			
 			break;
 		case "move":
-			Command.move(request, response,"/member/main");
+			Command.move(request, response,dir,page);
 			break;
 		
 		

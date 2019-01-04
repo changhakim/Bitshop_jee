@@ -20,18 +20,19 @@ public class HomeController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String dir = request.getParameter("dir");
+		if(dir == null){
+			int a = request.getServletPath().indexOf(".");
+			dir = request.getServletPath().substring(1,a);
+		}
+		System.out.println("dir~~~~"+dir);
 		String cmd = request.getParameter("cmd");
+		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
-		if(dir == null) {
-		int	dd = request.getServletPath().indexOf(".");
-			dir = request.getServletPath().substring(1, dd);
-			System.out.println("-----"+dir);
-		}
-		if(page == null) {
-			page = "main";
-		}
-		switch((cmd==null)?cmd="home":cmd) {
-		case "home" : Command.move(request, response, dir+"/"+page);
+		page = (page == null)?page="main":page;
+		
+		
+		switch(cmd) {
+		case "move" : Command.move(request, response, dir,page);
 		break;
 		}
 	}

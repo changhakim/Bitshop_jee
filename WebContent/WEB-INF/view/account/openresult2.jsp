@@ -19,8 +19,8 @@
 			<td colspan="2">
 				<ul id="navi-bar">
 					<li ><a href="home.do">홈으로</a></li>
-					<li style="background-color:blue;"><a href="member.do">회원관리</a></li>
-					<li ><a href="account.do">계좌관리</a></li>
+					<li ><a href="member.do">회원관리</a></li>
+					<li style = background-color:blue;><a href="account.do">계좌관리</a></li>
 					<li ><a href="article.do">게시판</a></li>
 					<li ><a href="admin.do">관리자</a></li>
 					
@@ -31,29 +31,21 @@
 		</tr>
 		<tr style="height :300px">
 			<td id="side-menu">
-				<table>
-					<tr>
-						<td>회원목록</td>
-					</tr>
-					<tr>
-						<td>동일이름찾기</td>
-					</tr>
-					<tr>
-						<td>아이디찾기</td>
-					</tr>
-					<tr>
-						<td>회원수</td>
-					</tr>
-					<tr>
-						<td>비밀번호변경</td>
-					</tr>
-					<tr>
-						<td>아이디삭제</td>
-					</tr>
-					
-				</table>
+				
 			</td>
-			<td></td>
+			<td>
+			<div>
+			<form action="account.do">
+			
+				<h1 style="font-size: 30px; color: red;">계좌가 생성되었습니다.</h1>
+				계좌번호: <br />
+				잔액확인: <br />
+				
+			
+			<input type="submit" id="btn" value="확인" />
+			</form>
+			</div>
+			</td>
 		</tr>
 	</table>
 	
