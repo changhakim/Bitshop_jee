@@ -1,13 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page import="domain.*"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-
-</style>
+<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/style.css" />
 </head>
 <body>
 	<table id ="wrapper">
@@ -68,10 +67,16 @@
 			<form action="account.do">
 			
 				<h1 style="font-size: 30px; color: red;">계좌가 생성되었습니다.</h1>
-				계좌번호: <br />
-				잔액확인: <br />
+				<%AccountBean acc = (AccountBean)request.getAttribute("acc");
+				String accountNum = acc.getAccountNum();
+				 String date =  acc.getToday();
+				 String money = String.valueOf(acc.getMoney());
+				 
+				%>
 				
-			
+				계좌번호: <%= accountNum %><br />
+				생성날짜:<%= date %>
+				잔액 : <%= money %>
 			<input type="submit" id="btn" value="확인" />
 			</form>
 			</div>

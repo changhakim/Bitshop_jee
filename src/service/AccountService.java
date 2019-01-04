@@ -6,12 +6,13 @@ import domain.AccountBean;
 
 public interface AccountService {
 	
-	public void createAccount(int money);
-	public void accountNum();
+	public String openAccount(int money);
+	public String createAccountNum();
 	
+	public AccountBean findByAccountNum(String accountNum);
 	public ArrayList<AccountBean> list();
 	public ArrayList<AccountBean> findall();
-	public AccountBean findbyAccountNum(String accountNum);
+	
 	public int count();
 	public String findDate();
 	

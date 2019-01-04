@@ -22,7 +22,21 @@
 			<%@ include file="side-menu.jsp" %>
 			</td>
 			<td>
-				<%@ include file="content.jsp" %>
+				<div id="content">
+				<%
+				String compo = request.getAttribute("compo").toString();
+				switch(compo){
+				case "login-success":
+					%>
+					<%@ include file="login-success.jsp" %>
+					
+					<%
+					break;
+				
+				}
+			
+				%>
+				</div>
 			</td>
 		</tr>
 		<tr style="height: 100px">

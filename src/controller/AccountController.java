@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import domain.AccountBean;
+import service.AccountService;
+import service.AccountServiceImpl;
 
 /**
  * Servlet implementation class AccountController
@@ -22,6 +24,7 @@ public class AccountController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		AccountService accountService = new AccountServiceImpl();
 		String dir = request.getParameter("dir");
 		if(dir == null){
 			int a = request.getServletPath().indexOf(".");
@@ -34,12 +37,22 @@ public class AccountController extends HttpServlet {
 		
 		switch(cmd) {
 		case "move": 
+			
 			Command.move(request, response,dir,page);
 			break;
 		case "open-account":
 			System.out.println(dir+"-----dir-----");
 			System.out.println(page+"------page-----");
+			
 			String money = request.getParameter("money");
+			System.out.println("계좌개설시 입금한 돈 ?"+money);
+			String accNum = accountService.openAccount(Integer.parseInt(money));
+			
+			AccountBean acc = accountService.findByAccountNum(accNum);
+			
+			request.setAttribute("acc", acc);
+			
+			
 			Command.move(request, response, dir, page);
 			break;
 		}
