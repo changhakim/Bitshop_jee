@@ -1,5 +1,5 @@
 package service;
 
-public class MemberServiceImpl {
+public class MemberServiceImpl{
 
 }

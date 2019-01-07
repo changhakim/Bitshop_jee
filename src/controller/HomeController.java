@@ -28,7 +28,7 @@ public class HomeController extends HttpServlet {
 		String cmd = request.getParameter("cmd");
 		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
-		page = (page == null)?page="main":page;
+		page = "main";
 		
 		
 		switch(cmd) {

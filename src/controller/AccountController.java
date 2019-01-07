@@ -31,19 +31,31 @@ public class AccountController extends HttpServlet {
 			dir = request.getServletPath().substring(1,a);
 		}
 		String cmd = request.getParameter("cmd");
+		System.out.println("cmd-----"+cmd);
 		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
-		page = (page == null)?"main":page;
+		page = "main";
+		System.out.println("page----"+page);
 		
 		switch(cmd) {
 		case "move": 
+			String dest = request.getParameter("dest");
+			if(dest == null) {
+				dest = "withdraw";
+			}
+			request.setAttribute("dest", dest);
+			
 			
 			Command.move(request, response,dir,page);
 			break;
 		case "open-account":
 			System.out.println(dir+"-----dir-----");
 			System.out.println(page+"------page-----");
-			
+			dest = request.getParameter("dest");
+			if(dest==null) {
+				dest = "open-result";
+			}
+			request.setAttribute("dest",dest);
 			String money = request.getParameter("money");
 			System.out.println("계좌개설시 입금한 돈 ?"+money);
 			String accNum = accountService.openAccount(Integer.parseInt(money));
@@ -51,6 +63,8 @@ public class AccountController extends HttpServlet {
 			AccountBean acc = accountService.findByAccountNum(accNum);
 			
 			request.setAttribute("acc", acc);
+			
+			
 			
 			
 			Command.move(request, response, dir, page);

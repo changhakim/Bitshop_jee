@@ -1,13 +1,35 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/style.css" />
-</head>
+<%@ include file="../home/head.jsp" %>
 <body>
-<h1>게시판</h1><br/>
-</body>
+	
+	<table id ="wrapper">
+		
+		<tr id = "first">
+			
+			<td colspan="2">
+				<%@ include file="../home/header.jsp" %>
+			</td>
+			
+		</tr>
+	
+		<tr>
+			<td colspan="2">
+				<%@ include file = "../home/navi-var.jsp" %>
+			</td>
+			
+		</tr>
+		<tr style="height :300px">
+			
+			<td style = "width:30%">
+			<%@ include file="side-menu.jsp" %>
+				
+			</td>
+			<td>
+				
+			</td>
+		</tr>
+	</table>
+	
+	
 </html>

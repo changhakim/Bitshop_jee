@@ -1,77 +1,47 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="<%=application.getContextPath()%>/resources/css/style.css" />
-</head>
+<%@ include file="../home/head.jsp" %>
 <body>
+	
 	<table id ="wrapper">
+		
 		<tr id = "first">
+			
 			<td colspan="2">
-				<h1>비트 쇼핑몰</h1>
+				<%@ include file="../home/header.jsp" %>
 			</td>
 			
 		</tr>
+	
 		<tr>
 			<td colspan="2">
-				<ul id="navi-bar">
-					<li ><a href="home.do">홈으로</a></li>
-					<li ><a href="member.do">회원관리</a></li>
-					<li style="background-color:red;"><a href="account.do">계좌관리</a></li>
-					<li ><a href="article.do">게시판</a></li>
-					<li ><a href="admin.do">관리자</a></li>
-					
-				</ul>
-			
+				<%@ include file = "../home/navi-var.jsp" %>
 			</td>
 			
 		</tr>
 		<tr style="height :300px">
-			<td id="side-menu">
-				<table>
-					<tr>
-						<td>계좌개설</td>
-					</tr>
-					<tr>
-						<td>계좌목록</td>
-					</tr>
-					<tr>
-						<td>계좌검색(이름)</td>
-					</tr>
-					<tr>
-						<td>계좌검색(번호)</td>
-					</tr>
-					<tr>
-						<td>총계좌수</td>
-					</tr>
-					<tr>
-						<td>계좌번호체크</td>
-					</tr>
-					<tr>
-						<td>입금</td>
-					</tr>
-					<tr>
-						<td>출금</td>
-					</tr>
-					<tr>
-						<td>계좌해지</td>
-					</tr>
-				</table>
+			
+			<td style = "width:30%">
+			<%@ include file="side-menu.jsp" %>
+				
 			</td>
 			<td>
-				<div>
-					<form action="account.do">
-							<h1>계좌개설</h1>	
-							입금액 : <input type="text" name = "money" />
-							<input type="hidden" name ="cmd" value="open-account" />
-							<input type="hidden" name = "page" value = "openresult"/>
-							<input type="submit"  id="btn" value = "확 인"/>
-										
-					</form>
-				</div>
+				<%
+				String dest = String.valueOf(request.getAttribute("dest"));
+				System.out.println("메인의dest-----"+dest);
+				
+				switch(dest){
+				case "withdraw":%><%@ include file ="withdraw.jsp" %>
+				
+				<%
+				break;
+				case "open-result":%><%@ include file = "openresult.jsp"  %>
+				<%
+					break;
+				
+				}
+				%>
+				
 			</td>
 		</tr>
 	</table>

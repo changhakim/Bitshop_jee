@@ -2,7 +2,7 @@ package controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +28,7 @@ public class MemberController extends HttpServlet {
 		cmd = (cmd == null)?"move":cmd;
 		String page = request.getParameter("page");
 		page = (page == null)?"main":page;
+		System.out.println("move----"+cmd);
 		
 		switch(cmd) {
 		case "login":
@@ -47,6 +48,11 @@ public class MemberController extends HttpServlet {
 			
 			break;
 		case "move":
+			String dest = request.getParameter("dest");
+			
+			dest = (dest==null)?"NONE":dest;
+			System.out.println("DEST"+dest);
+			request.setAttribute("dest",dest );
 			Command.move(request, response,dir,page);
 			break;
 		

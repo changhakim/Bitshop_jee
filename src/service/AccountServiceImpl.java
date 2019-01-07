@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.Random;
 
 import domain.AccountBean;
-import javafx.scene.chart.PieChart.Data;
+
 
 public class AccountServiceImpl implements AccountService{
 	private ArrayList<AccountBean> list;
@@ -19,10 +19,11 @@ public class AccountServiceImpl implements AccountService{
 	public String openAccount(int money) {
 		
 		AccountBean account = new AccountBean();
-		String a = account.getAccountNum();
+		
 		account.setAccountNum(createAccountNum());
 		account.setMoney(money);
 		account.setToday(findDate());
+		String a = account.getAccountNum();
 		list.add(account);
 		return a;
 	}
@@ -33,7 +34,7 @@ public class AccountServiceImpl implements AccountService{
 		AccountBean account = new AccountBean();
 		
 		for(int i =0;i<list.size();i++) {
-			if(list.get(i).getAccountNum().equals(accountNum)) {
+			if(accountNum.equals(list.get(i).getAccountNum())) {
 				account = list.get(i);
 				break;
 			}
@@ -47,7 +48,7 @@ public class AccountServiceImpl implements AccountService{
 		String a = "";
 		Random random = new Random();
 		for(int i=0;i<12;i++) {
-		a+=(i==3)?random.nextInt(10):"-"+random.nextInt(10);	
+		a+=(i==3)?"-"+random.nextInt(10):random.nextInt(10);	
 		}
 		
 		return a;
