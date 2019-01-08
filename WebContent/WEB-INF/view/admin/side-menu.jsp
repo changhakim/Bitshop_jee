@@ -3,22 +3,25 @@
 <div id="side-menu">
 				<table>
 					<tr>
-						<td>사원목록</td>
+						<td>관리자등록</td>
 					</tr>
 					<tr>
-						<td>직급으로찾기</td>
+						<td>회원목록</td>
 					</tr>
 					<tr>
-						<td>사원번호로찾기</td>
+						<td>회원검색(이름)</td>
 					</tr>
 					<tr>
-						<td>사원번호확인</td>
+						<td>회원검색(ID)</td>
 					</tr>
 					<tr>
-						<td>전체사원수</td>
+						<td>회원수</td>
 					</tr>
 					<tr>
-						<td>아이디삭제</td>
+						<td>회원정보수정</td>
+					</tr>
+					<tr>
+						<td>관리자탈퇴</td>
 					</tr>
 					
 				</table>

@@ -6,7 +6,7 @@ import domain.MemberBean;
 
 public interface MemberService {
 	
-	public void  joinMember();
+	public void  joinMember(MemberBean member);
 
 	public ArrayList<MemberBean> listMember(String id,String name,String pass,String ssn);
 	public ArrayList<MemberBean> findByname(String name);

@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import command.Command;
+import domain.MemberBean;
+import service.MemberService;
+import service.MemberServiceImpl;
 
 
 
@@ -19,7 +22,10 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		MemberBean member = null;
 		String dir = request.getParameter("dir");
+		System.out.println("멤버컨트롤러로들오와라제발");
 		if(dir == null){
 			int a = request.getServletPath().indexOf(".");
 			dir = request.getServletPath().substring(1,a);
@@ -29,7 +35,7 @@ public class MemberController extends HttpServlet {
 		String page = request.getParameter("page");
 		page = (page == null)?"main":page;
 		System.out.println("move----"+cmd);
-		
+		String dest = request.getParameter("dest");
 		switch(cmd) {
 		case "login":
 			String id = request.getParameter("uid");
@@ -48,14 +54,29 @@ public class MemberController extends HttpServlet {
 			
 			break;
 		case "move":
-			String dest = request.getParameter("dest");
 			
+			System.out.println("move로 들어옴");
 			dest = (dest==null)?"NONE":dest;
 			System.out.println("DEST"+dest);
 			request.setAttribute("dest",dest );
 			Command.move(request, response,dir,page);
+			
 			break;
-		
+		case "join":
+			System.out.println("join으로 들어옴");
+			dest = (dest==null)?"NONE":dest;
+			request.setAttribute("dest",dest );
+			member = new MemberBean();
+			
+			member.setId(request.getParameter("id"));
+			member.setName(request.getParameter("name"));
+			member.setPass(request.getParameter("pass"));
+			member.setSsn(request.getParameter("ssn"));
+			MemberServiceImpl.getInstance().joinMember(member);
+			request.setAttribute("member", member);
+			MemberServiceImpl.getInstance().findByid(request.getParameter("id"));
+			Command.move(request, response,dir,page);
+			break;
 		
 		}
 		

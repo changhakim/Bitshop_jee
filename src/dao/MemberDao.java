@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import domain.MemberBean;
 
 public interface MemberDao {
-	public void  createMember();
+	public void  insertMember(MemberBean member);
 
 	public ArrayList<MemberBean> selectMember(String id,String name,String pass,String ssn);
 	public ArrayList<MemberBean> selectByname(String name);

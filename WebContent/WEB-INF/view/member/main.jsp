@@ -26,15 +26,22 @@
 		</tr>
 		<tr style="height :300px">
 			<td style = "width:30%">
-				<%@ include file="side-menu.jsp" %>
+				
+				<%
+				String dest = String.valueOf(request.getAttribute("dest")) ;
+				if(dest.equals("join-form")){
+					%><%@ include file ="side-join.jsp" %><%
+				}else{
+					%><%@ include file="side-menu.jsp" %> <%
+				}
+				%>
+				
 				
 			</td>
 			<td>
 			<%
-			String dest = String.valueOf(request.getAttribute("dest"));			
-			if(dest.equals(null)){
-				dest = "NONE";
-			}
+			dest = String.valueOf(request.getAttribute("dest"));			
+			
 			System.out.println("메인의 dest"+dest);
 			switch(dest){
 			

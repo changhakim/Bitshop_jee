@@ -21,5 +21,6 @@ CREATE TABLE  member(
     ssn VARCHAR2(14)
 );
 --인스턴스 생성==DB에서 한 row를 추가하는것---
-INSERT INTO meber(id,name,pass,ssn)
+INSERT INTO member(id,name,pass,ssn)
 VALUES('hong', '홍길동', '1', '90010-1234567')
+SELECT * FROM member;
