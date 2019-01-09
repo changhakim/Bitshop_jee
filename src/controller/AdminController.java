@@ -36,13 +36,31 @@ public class AdminController extends HttpServlet {
 		case "move" :
 			Command.move(request, response,dir,page);
 			break;
+		case "adminjoin":
+			
+			break;
+		case "showall":
+			
+			break;
+		case "showbyauth":
+			
+			break;
+		case "shwobyemn":
+			
+			break;
+		case "showcount":
+			
+			break;
+		case "modifyem":
+			
+			break;
+		case "removeem":
+			
+			break;
 		}
 		
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

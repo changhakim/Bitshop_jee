@@ -24,7 +24,7 @@ public class AccountController extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountService accountService = new AccountServiceImpl();
+		AccountBean account = null;
 		String dir = request.getParameter("dir");
 		if(dir == null){
 			int a = request.getServletPath().indexOf(".");
@@ -41,7 +41,7 @@ public class AccountController extends HttpServlet {
 		case "move": 
 			String dest = request.getParameter("dest");
 			if(dest == null) {
-				dest = "withdraw";
+				dest = "open-money";
 			}
 			request.setAttribute("dest", dest);
 			
@@ -49,25 +49,48 @@ public class AccountController extends HttpServlet {
 			Command.move(request, response,dir,page);
 			break;
 		case "open-account":
+			account = new AccountBean();
 			System.out.println(dir+"-----dir-----");
 			System.out.println(page+"------page-----");
 			dest = request.getParameter("dest");
+			
+			account.setMoney(Integer.parseInt(request.getParameter("money")));
+			AccountServiceImpl.getInstance().createAccount(account);
+			
+			
 			if(dest==null) {
 				dest = "open-result";
 			}
 			request.setAttribute("dest",dest);
-			String money = request.getParameter("money");
-			System.out.println("계좌개설시 입금한 돈 ?"+money);
-			String accNum = accountService.openAccount(Integer.parseInt(money));
 			
-			AccountBean acc = accountService.findByAccountNum(accNum);
 			
-			request.setAttribute("acc", acc);
+			
+			
+			request.setAttribute("acc", "");
 			
 			
 			
 			
 			Command.move(request, response, dir, page);
+			break;
+			
+		case "showall":
+			
+			break;
+		case "byaccountnum":
+			
+			break;
+		case "accountcount":
+			
+			break;
+		case "deposit":
+			
+			break;
+		case "withdraw":
+			
+			break;
+		case "removeac":
+			
 			break;
 		}
 		

@@ -7,11 +7,12 @@ import domain.MemberBean;
 public interface MemberDao {
 	public void  insertMember(MemberBean member);
 
-	public ArrayList<MemberBean> selectMember(String id,String name,String pass,String ssn);
-	public ArrayList<MemberBean> selectByname(String name);
-	public MemberBean selectByid(String id);
-	public int CountMember();
+	public ArrayList<MemberBean> selectAllMembers();
+	public ArrayList<MemberBean> selectMembersByName(String name);
+	public MemberBean selectMemberById(String id);
+	public boolean existByIDPass(String id,String pass);
+	public int countMembers();
 	
-	public void updatePass(String id,String pass,String newpass);
-	public void deleteId(String id,String pass);
+	public void updateMember(MemberBean member);
+	public void deleteMember(String id,String pass);
 }

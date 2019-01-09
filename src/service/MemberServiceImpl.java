@@ -8,63 +8,69 @@ import domain.MemberBean;
 
 public class MemberServiceImpl implements MemberService{
 	private static  MemberServiceImpl instance = new MemberServiceImpl();
-	private MemberServiceImpl() {}
+	private MemberServiceImpl() {
+		dao = MemberDaoImpl.getInstance();
+	}
 	public static MemberServiceImpl getInstance() {return instance;}
 
-
 	
+	MemberDaoImpl dao;
 
 
 	@Override
-	public void joinMember(MemberBean member) {
+	public void createMember(MemberBean member) {
 		System.out.println("멤버서비스 조인에 진입");
 		System.out.println("===컨트롤러에서 넘어온 회원정보====");
 		System.out.println("ID:"+member.getId());
 		System.out.println("이름:"+member.getName());
 		System.out.println("비번:"+member.getPass());
 		System.out.println("주번:"+member.getSsn());
-		MemberDaoImpl.getInstance().insertMember(member);
+		dao.insertMember(member);
 	}
 
 	@Override
-	public ArrayList<MemberBean> listMember(String id, String name, String pass, String ssn) {
-		ArrayList<MemberBean> list = new ArrayList<>();
+	public ArrayList<MemberBean> retrieveAllMembers() {
+		ArrayList<MemberBean> list = dao.selectAllMembers();
+		
 		return list;
 	}
 
 	@Override
-	public ArrayList<MemberBean> findByname(String name) {
-		ArrayList<MemberBean> list = new ArrayList<>();
+	public ArrayList<MemberBean> retrieveByMembersByname(String name) {
+		ArrayList<MemberBean> list = dao.selectMembersByName(name);
 		return list;
 	}
 
 	@Override
-	public MemberBean findByid(String id) {
-		MemberBean member = new MemberBean();
+	public MemberBean retrieveMembersById(String id) {
+		MemberBean member = dao.selectMemberById(id);
+		
+		
 		return member;
 	}
 
 	@Override
-	public int findSomeCount() {
-		int count =0;
-		return 0;
+	public int countMembers() {
+		int count =dao.countMembers();
+		
+		return count;
 	}
 
 	@Override
 	public boolean existMember(String id, String pass) {
-		boolean ok = true;
+		boolean ok = dao.existByIDPass(id, pass);
 		return ok;
 	}
 
 	@Override
-	public void updatePass(String id, String pass, String newpass) {
-		// TODO Auto-generated method stub
+	public void modifyMember(MemberBean member) {
+		dao.updateMember(member);
 		
 	}
 
 	@Override
-	public void deleteId(String id, String pass) {
-		// TODO Auto-generated method stub
+	public void removeMember(String id,String pass) {
+		dao.deleteMember(id, pass);
 		
 	}
 

@@ -6,16 +6,15 @@ import domain.AdminBean;
 
 public interface AdminService {
 
-	public void createEmployee();
+	public void createAdmins(AdminBean admin);
 	
-	public ArrayList<AdminBean> listAll();
-	public ArrayList<AdminBean> findbyauth(String auth);
-	public AdminBean findbyEmployeeNum(String adminNum);
-	public boolean findByEmployeeNumPass(String adminNum,String pass);
-	public int countAdmin();
+	public ArrayList<AdminBean> retrieveAdminsAll();
+	public ArrayList<AdminBean> retrieveAdminsByAuth(String auth);
+	public AdminBean retrieveAdminsByEmployeeNum(String adminNum);
+	public int countAdmins();
 	
-	public void updatebyPass(String adminNum,String pass,String newPass);
-	public void updatebyAuth(String adminNum,String pass,String auth);
+	public void modifyEmployee(AdminBean admin);
 	
-	public void deleteEmployee(String adminNum,String pass);
+	
+	public void removeEmployee(String adminNum,String pass);
 }

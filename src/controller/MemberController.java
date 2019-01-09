@@ -72,11 +72,17 @@ public class MemberController extends HttpServlet {
 			member.setName(request.getParameter("name"));
 			member.setPass(request.getParameter("pass"));
 			member.setSsn(request.getParameter("ssn"));
-			MemberServiceImpl.getInstance().joinMember(member);
+			MemberServiceImpl.getInstance().createMember(member);
 			request.setAttribute("member", member);
-			MemberServiceImpl.getInstance().findByid(request.getParameter("id"));
+			MemberServiceImpl.getInstance().retrieveMembersById(request.getParameter("id"));
 			Command.move(request, response,dir,page);
 			break;
+		case "showall":break;
+		case "showbyname":break;
+		case "showbyid":break;
+		case "showcount":break;
+		case "modifymember":break;
+		case "removemember":break;
 		
 		}
 		

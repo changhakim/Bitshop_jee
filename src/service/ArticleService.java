@@ -7,15 +7,15 @@ import domain.ArticleBean;
 public interface ArticleService {
 
 	//CREATE
-		public void article(String title,String content,String writer);
+		public void createArticle(ArticleBean article);
 		//READ
-		public ArrayList<ArticleBean> list();
-		public ArrayList<ArticleBean> findByWriter();
-		public ArticleBean findBySeq(String seq);
+		public ArrayList<ArticleBean> retrieveAll();
+		public ArrayList<ArticleBean> retrieveByWriter(String Writer);
+		public ArticleBean retrieveBySeq(String seq);
 		public String redDate();
 		public int countArticle();
 		//UPDATE
-		public void updateArticle(String seq,String content);
+		public void modifyArticle(ArticleBean article);
 		//DELETE
-		public void deleteArticle(String seq);
+		public void removeArticle(String seq);
 }
