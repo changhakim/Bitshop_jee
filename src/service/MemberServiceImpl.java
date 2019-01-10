@@ -43,10 +43,7 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberBean retrieveMembersById(String id) {
-		MemberBean member = dao.selectMemberById(id);
-		
-		
-		return member;
+		return dao.selectMemberById(id);
 	}
 
 	@Override
@@ -58,8 +55,20 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public boolean existMember(String id, String pass) {
-		boolean ok = dao.existByIDPass(id, pass);
+		boolean ok = true;
+		MemberBean member = dao.existByIDPass(id, pass);
+		if(member == null) {
+			ok = false;
+		}
+		System.out.println("ok"+ok);
+		/*boolean ok = false;
+		MemberBean member = dao.existByIDPass(id, pass);
+		if(member.getId().equals(id)&& member.getPass().equals(pass)) {
+			ok = true;
+		}*/
+		
 		return ok;
+		
 	}
 
 	@Override

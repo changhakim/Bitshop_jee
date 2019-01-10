@@ -10,7 +10,7 @@ public interface MemberDao {
 	public ArrayList<MemberBean> selectAllMembers();
 	public ArrayList<MemberBean> selectMembersByName(String name);
 	public MemberBean selectMemberById(String id);
-	public boolean existByIDPass(String id,String pass);
+	public MemberBean existByIDPass(String id,String pass);
 	public int countMembers();
 	
 	public void updateMember(MemberBean member);

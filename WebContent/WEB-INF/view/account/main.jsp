@@ -31,7 +31,7 @@
 				System.out.println("메인의dest-----"+dest);
 				
 				switch(dest){
-				case "open-money":%><%@ include file ="open-money.jsp" %>
+				case "account-detail":%><%@ include file ="account-detail.jsp" %>
 				
 				<%
 				break;

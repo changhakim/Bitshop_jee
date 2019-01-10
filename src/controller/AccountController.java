@@ -62,18 +62,12 @@ public class AccountController extends HttpServlet {
 				dest = "open-result";
 			}
 			request.setAttribute("dest",dest);
-			
-			
-			
-			
 			request.setAttribute("acc", "");
-			
-			
-			
-			
 			Command.move(request, response, dir, page);
 			break;
 			
+		case "account-detail":
+		
 		case "showall":
 			
 			break;

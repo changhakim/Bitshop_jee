@@ -24,8 +24,16 @@
 			<td>
 				<div id="content">
 				
+				<%String dest = String.valueOf(request.getAttribute("dest")); 
+				System.out.println("dest홈메인에 들어왔닝?:"+dest);
+				switch(dest){
+				case "welcome":%>
+				<%@ include file="welcome.jsp" %>
+				<%break;
 				
-					<%@ include file="login-success.jsp" %>
+				}
+				%>
+					
 					
 					
 				

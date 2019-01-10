@@ -22,10 +22,9 @@ public class MemberController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		MemberService service = MemberServiceImpl.getInstance();
 		MemberBean member = null;
 		String dir = request.getParameter("dir");
-		System.out.println("멤버컨트롤러로들오와라제발");
 		if(dir == null){
 			int a = request.getServletPath().indexOf(".");
 			dir = request.getServletPath().substring(1,a);
@@ -36,19 +35,27 @@ public class MemberController extends HttpServlet {
 		page = (page == null)?"main":page;
 		System.out.println("move----"+cmd);
 		String dest = request.getParameter("dest");
+		
+		
+		
 		switch(cmd) {
 		case "login":
 			String id = request.getParameter("uid");
 			String pass = request.getParameter("upw");
-			System.out.println("아이디="+id+"비밀번호="+pass);
-			
-			if(!(id.equals("test")&&pass.equals("test"))) {
+			boolean loginok = service.existMember(id, pass);
+			System.out.println("참거짓"+loginok);
+			if(loginok) {
+				member = new MemberBean();
+				request.setAttribute("dest", dest);
+				member = service.retrieveMembersById(request.getParameter("uid"));
+				request.setAttribute("member", member);
+			}else {
 				dir = "";
 				page = "index";
 			}
-			request.setAttribute("name", "test");
-			request.setAttribute("compo", "login-success");
-				Command.move(request, response,dir,page);
+			
+			
+				
 				
 			
 			
@@ -59,7 +66,7 @@ public class MemberController extends HttpServlet {
 			dest = (dest==null)?"NONE":dest;
 			System.out.println("DEST"+dest);
 			request.setAttribute("dest",dest );
-			Command.move(request, response,dir,page);
+			
 			
 			break;
 		case "join":
@@ -73,10 +80,16 @@ public class MemberController extends HttpServlet {
 			member.setPass(request.getParameter("pass"));
 			member.setSsn(request.getParameter("ssn"));
 			MemberServiceImpl.getInstance().createMember(member);
+			member = service.retrieveMembersById(request.getParameter("id"));
+			System.out.println("컨트롤러 멤버 네임"+member.getName());
 			request.setAttribute("member", member);
-			MemberServiceImpl.getInstance().retrieveMembersById(request.getParameter("id"));
-			Command.move(request, response,dir,page);
+			
 			break;
+		case "logout":
+			dir = "";
+			page = "index";
+			dest = "";
+			break;	
 		case "showall":break;
 		case "showbyname":break;
 		case "showbyid":break;
@@ -85,6 +98,7 @@ public class MemberController extends HttpServlet {
 		case "removemember":break;
 		
 		}
+		Command.move(request, response,dir,page);
 		
 	}
 
