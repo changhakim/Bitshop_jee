@@ -31,6 +31,9 @@
 				System.out.println("메인의dest-----"+dest);
 				
 				switch(dest){
+				
+				case "NONE":break;%>
+				<%
 				case "account-detail":%><%@ include file ="account-detail.jsp" %>
 				
 				<%
@@ -38,6 +41,10 @@
 				case "open-result":%><%@ include file = "openresult.jsp"  %>
 				<%
 					break;
+				case "open-form":%><%@ include file = "open-form.jsp"  %>
+				<%
+				break;
+				
 				
 				}
 				%>

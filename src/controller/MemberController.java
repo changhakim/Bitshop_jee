@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import command.Command;
 import domain.MemberBean;
@@ -24,6 +25,7 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberService service = MemberServiceImpl.getInstance();
 		MemberBean member = null;
+		HttpSession session = request.getSession();
 		String dir = request.getParameter("dir");
 		if(dir == null){
 			int a = request.getServletPath().indexOf(".");
@@ -35,7 +37,7 @@ public class MemberController extends HttpServlet {
 		page = (page == null)?"main":page;
 		System.out.println("move----"+cmd);
 		String dest = request.getParameter("dest");
-		
+		dest = (dest==null)?"NONE":dest;
 		
 		
 		switch(cmd) {
@@ -46,9 +48,11 @@ public class MemberController extends HttpServlet {
 			System.out.println("참거짓"+loginok);
 			if(loginok) {
 				member = new MemberBean();
+				
+				
 				request.setAttribute("dest", dest);
 				member = service.retrieveMembersById(request.getParameter("uid"));
-				request.setAttribute("member", member);
+				session.setAttribute("user", member);
 			}else {
 				dir = "";
 				page = "index";
@@ -62,8 +66,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case "move":
 			
-			System.out.println("move로 들어옴");
-			dest = (dest==null)?"NONE":dest;
+			
+			
+			
 			System.out.println("DEST"+dest);
 			request.setAttribute("dest",dest );
 			
@@ -82,14 +87,23 @@ public class MemberController extends HttpServlet {
 			MemberServiceImpl.getInstance().createMember(member);
 			member = service.retrieveMembersById(request.getParameter("id"));
 			System.out.println("컨트롤러 멤버 네임"+member.getName());
-			request.setAttribute("member", member);
+			
+			session.setAttribute("user", member);
 			
 			break;
 		case "logout":
 			dir = "";
 			page = "index";
 			dest = "";
-			break;	
+			session.invalidate();
+			break;
+		case "detail":
+		dest = "detail";
+			/*service.retrieveMembersById(id);*/
+			request.setAttribute("dest", dest);
+			session.setAttribute("member", member);
+			break;
+	
 		case "showall":break;
 		case "showbyname":break;
 		case "showbyid":break;

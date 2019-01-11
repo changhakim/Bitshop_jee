@@ -36,17 +36,16 @@ public class AccountController extends HttpServlet {
 		String page = request.getParameter("page");
 		page = "main";
 		System.out.println("page----"+page);
-		
+		String dest = request.getParameter("dest");
+		dest=(dest==null)?"NONE":dest;
 		switch(cmd) {
 		case "move": 
-			String dest = request.getParameter("dest");
-			if(dest == null) {
-				dest = "open-money";
-			}
+		
+			System.out.println("무브의 데스트"+dest);
 			request.setAttribute("dest", dest);
 			
 			
-			Command.move(request, response,dir,page);
+			
 			break;
 		case "open-account":
 			account = new AccountBean();
@@ -63,9 +62,12 @@ public class AccountController extends HttpServlet {
 			}
 			request.setAttribute("dest",dest);
 			request.setAttribute("acc", "");
-			Command.move(request, response, dir, page);
-			break;
 			
+			break;
+		case "open-form":
+				
+				request.setAttribute("dest",dest);
+			break;	
 		case "account-detail":
 		
 		case "showall":
@@ -88,7 +90,7 @@ public class AccountController extends HttpServlet {
 			break;
 		}
 		
-		
+		Command.move(request, response, dir, page);
 		
 	}
 

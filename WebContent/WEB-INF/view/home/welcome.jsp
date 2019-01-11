@@ -3,7 +3,7 @@
 <%@page import="domain.MemberBean"%>
 <%
 System.out.println("웰컴에 들어왓니");
-MemberBean user =(MemberBean)request.getAttribute("member");
+MemberBean user =(MemberBean)session.getAttribute("user");
 	%>
 	 <%=user.getName() %> 님 환영합니다
 	 <a href="member.do?cmd=logout">로그아웃</a>
